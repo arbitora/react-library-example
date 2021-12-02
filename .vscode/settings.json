@@ -1,0 +1,15 @@
+{
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": ["source.formatDocument", "source.fixAll.eslint"],
+    "eslint.alwaysShowStatus": true,
+    "eslint.format.enable": false,
+    "eslint.codeAction.showDocumentation": {
+        "enable": true
+    },
+    "editor.detectIndentation": false,
+    "prettier.requireConfig": true,
+    "files.associations": {
+        "*.js": "javascriptreact"
+    }
+}

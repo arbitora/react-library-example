@@ -1,0 +1,24 @@
+{
+    "presets": [
+        [
+            // https://github.com/babel/babel/issues/11622
+            "@babel/preset-env"
+        ],
+        [
+            // https://github.com/babel/babel/issues/11622
+            "@babel/preset-react"
+        ]
+    ],
+    "plugins": [
+        [
+            "@babel/plugin-transform-runtime",
+            {
+                "absoluteRuntime": false,
+                "corejs": false,
+                "helpers": true,
+                "regenerator": true,
+                "useESModules": false
+            }
+        ]
+    ]
+}
