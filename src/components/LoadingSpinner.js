@@ -6,7 +6,7 @@ const LoadingSpinner = (props) => {
         return (
             <Grid container {...containerProps}>
                 <Grid item>
-                    <CircularProgress sx={sx} />
+                    <CircularProgress color={"primary"} sx={sx} />
                 </Grid>
             </Grid>
         )
