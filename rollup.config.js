@@ -7,19 +7,29 @@ import postcss from "rollup-plugin-postcss"
 import { babel } from "@rollup/plugin-babel"
 
 import packageJson from "./package.json"
-
-import path from "path"
-/*
 import fs from "fs"
-const externals = fs.readdirSync(path.join(__dirname, "./node_modules"))
-fs.writeFileSync("externals.json", JSON.stringify(externals, null, 4))
-*/
+
+const chunkArray = fs
+    .readFileSync("./src/index.js", "utf8")
+    .split("\n") // -> all lines
+    .filter((line) => line.includes(" from ")) // -> lines which export something
+    .map((line) => "src/" + /.* from ('|")(\.\/|~)?(.*)('|").*/g.exec(line)[3]) // -> module paths
+
+console.log(chunkArray)
+const input = {
+    index: "src/index.js"
+}
+chunkArray.forEach((path) => {
+    const name = path // 'yolo/FooBar'
+        .split("/") // -> ['yolo', 'FooBar']
+        .pop() // -> 'FooBar'
+    //.replace(/^\w/, c => c.toLowerCase()) // -> 'fooBar'
+    input[name] = path
+})
 
 const rollupConfig = {
     preserveModules: false,
-    input: {
-        index: path.join(__dirname, "./src/index.js")
-    },
+    input,
     output: [
         {
             dir: "dist/",
@@ -36,13 +46,6 @@ const rollupConfig = {
             entryFileNames: "esm-[name].js"
         }
     ],
-    /*
-    external: (id, parent, isResolved) => {
-        const isExternal = parent != null && id.includes("node_modules")
-        console.log(`Resolving: ${id} - ${parent} - ${isResolved} - ${isExternal}`)
-        return isExternal
-    },
-    */
     plugins: [
         external(),
         resolve({ preferBuiltins: true, mainFields: ["browser"] }),
