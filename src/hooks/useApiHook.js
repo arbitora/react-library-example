@@ -36,30 +36,55 @@ const useApiHook = () => {
         return ""
     }
 
+    /**
+     *
+     * @param {*} query Will be serialized
+     * @returns
+     */
     const getRequest = (query) => {
         let url = `${baseUrl}get`
         return axiosRequest("GET", "?" + serialize(query), url)
     }
     self.getRequest = getRequest
 
+    /**
+     *
+     * @param {*} data
+     * @returns
+     */
     const patchRequest = (data) => {
         let url = `${baseUrl}patch`
         return axiosRequest("PATCH", data, url)
     }
     self.patchRequest = patchRequest
 
+    /**
+     *
+     * @param {*} data
+     * @returns
+     */
     const postRequest = (data) => {
         let url = `${baseUrl}post`
         return axiosRequest("POST", data, url)
     }
     self.postRequest = postRequest
 
+    /**
+     *
+     * @param {*} data
+     * @returns
+     */
     const putRequest = (data) => {
         let url = `${baseUrl}put`
         return axiosRequest("PUT", data, url)
     }
     self.putRequest = putRequest
 
+    /**
+     *
+     * @param {*} data
+     * @returns
+     */
     const deleteRequest = (data) => {
         let url = `${baseUrl}delete`
         return axiosRequest("DELETE", data, url)
